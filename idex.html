@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LETSATSI Finance and Loan</title>
+    <!-- Link to Google Fonts for clean typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* =============================
+           CSS RESET & GLOBAL STYLES
+           ============================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* 
+        To change the page background color, edit the value below.
+        Current: light gray (#f2f2f2)
+        */
+      body {
+        background-color: #f2f2f2;
+        font-family: "Open Sans", sans-serif;
+        color: #333;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      /* =============================
+           LOGO SECTION STYLES
+           ============================= */
+      .logo-section {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      /* 
+        To change the logo size or shape, edit these properties.
+        Current: 70px wide, circular shape
+        */
+      .logo {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%; /* Makes the logo circular */
+        background-color: #007bff; /* Logo background color */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      /* 
+        To replace the logo with an actual image:
+        1. Remove the .logo background-color and text styles above
+        2. Add: background-image: url('your-logo-image.jpg');
+        3. Add: background-size: cover; background-position: center;
+        */
+
+      /* 
+        To change the company name font, size, or color, edit these properties.
+        Current: black, Montserrat font, 20px
+        */
+      .company-name {
+        font-family: "Montserrat", sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        color: #000; /* Black color */
+      }
+
+      /* =============================
+           PAGE TITLE STYLES
+           ============================= */
+      /* 
+        To change the page title appearance, edit these properties.
+        Current: black, 32px, bold, Montserrat font
+        */
+      .page-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: #000; /* Black color */
+        text-align: center;
+        margin-bottom: 40px;
+        margin-top: 100px; /* Creates space below the logo area */
+      }
+
+      /* =============================
+           MAIN CARD STYLES
+           ============================= */
+      /* 
+        To change the card size, background, or shadow, edit these properties.
+        Current: white background, 70% width, rounded corners, subtle shadow
+        */
+      .card {
+        background-color: #ffffff; /* White background */
+        width: 70%; /* Width of the card relative to screen */
+        max-width: 800px; /* Maximum width on large screens */
+        border-radius: 12px; /* Rounded corners */
+        padding: 30px; /* Internal spacing */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      /* 
+        To change the card title appearance, edit these properties.
+        Current: uppercase, bold, 20px, blue color, margin below
+        */
+      .card-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #007bff; /* Blue color */
+        margin-bottom: 25px;
+      }
+
+      /* 
+        To change the paragraph text appearance, edit these properties.
+        Current: 16px size, centered, 1.5 line spacing
+        */
+      .card-text {
+        font-size: 16px;
+        text-align: center;
+        line-height: 1.5; /* Line spacing */
+        color: #444;
+      }
+
+      /* 
+        To add more paragraphs with spacing between them
+        */
+      .card-text p {
+        margin-bottom: 20px;
+      }
+
+      /* =============================
+           BUTTON STYLES
+           ============================= */
+      /* 
+        To change the button appearance, edit these properties.
+        Current: blue background, white text, rounded corners, 200px wide
+        */
+      .proceed-btn {
+        background-color: #007bff; /* Blue background */
+        color: #ffffff; /* White text */
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 8px; /* Rounded corners */
+        padding: 15px 30px; /* Vertical and horizontal padding */
+        width: 200px; /* Fixed width */
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 
+        To change the button hover effect, edit these properties.
+        Current: slightly darker blue on hover
+        */
+      .proceed-btn:hover {
+        background-color: #0069d9; /* Darker blue on hover */
+        transform: translateY(-2px); /* Slight lift effect */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .proceed-btn:active {
+        transform: translateY(0); /* Reset lift when clicked */
+      }
+
+      /* =============================
+           RESPONSIVE STYLES
+           ============================= */
+      /* 
+        These media queries adjust the layout for different screen sizes
+        */
+
+      /* Tablets and smaller screens */
+      @media (max-width: 992px) {
+        .card {
+          width: 85%; /* Make card wider on smaller screens */
+        }
+      }
+
+      /* Mobile devices */
+      @media (max-width: 768px) {
+        .logo-section {
+          position: static; /* Remove absolute positioning on mobile */
+          justify-content: center;
+          margin-bottom: 30px;
+          width: 100%;
+        }
+
+        .page-title {
+          margin-top: 20px; /* Less top margin on mobile */
+          font-size: 28px; /* Smaller title on mobile */
+        }
+
+        .card {
+          width: 95%; /* Almost full width on mobile */
+          padding: 20px; /* Less padding on mobile */
+        }
+
+        .card-title {
+          font-size: 18px; /* Smaller title on mobile */
+        }
+
+        .card-text {
+          font-size: 15px; /* Slightly smaller text on mobile */
+        }
+
+        .company-name {
+          font-size: 18px; /* Smaller company name on mobile */
+        }
+      }
+
+      /* Very small mobile devices */
+      @media (max-width: 480px) {
+        .logo-section {
+          flex-direction: column; /* Stack logo and text vertically */
+          text-align: center;
+          gap: 10px;
+        }
+
+        .page-title {
+          font-size: 24px; /* Even smaller title on very small screens */
+        }
+
+        .card-text {
+          font-size: 14px; /* Smaller text on very small screens */
+        }
+
+        .proceed-btn {
+          width: 100%; /* Full width button on very small screens */
+          max-width: 200px; /* But not wider than 200px */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- =============================
+         LOGO SECTION
+         ============================= -->
+    <div class="logo-section">
+      <!-- 
+        To replace the logo with an image:
+        1. Remove the text "LETSATSI" below
+        2. Replace the entire div with: <img src="your-logo.jpg" class="logo" alt="LETSATSI Logo">
+        -->
+      <div class="logo">
+        <img
+          src="/WhatsApp Image 2025-11-30 at 3.12.46 PM.jpeg"
+          alt=""
+          width="80"
+        />
+      </div>
+      <!-- 
+        To change the company name text, edit the text below:
+        -->
+      <div class="company-name">LETSATSI Finance and Loan</div>
+    </div>
+
+    <!-- =============================
+         PAGE TITLE
+         ============================= -->
+    <!-- 
+    To change the page title text, edit the text below:
+    -->
+    <h1 class="page-title">PRIVACY DISCLAIMER</h1>
+
+    <!-- =============================
+         MAIN CONTENT CARD
+         ============================= -->
+    <div class="card">
+      <!-- 
+        To change the card title text, edit the text below:
+        -->
+      <h2 class="card-title">LETSATSI FINANCIAL SERVICES</h2>
+
+      <!-- 
+        To change the card paragraph text, edit the text below:
+        To add more paragraphs, add more <p> elements
+        -->
+      <div class="card-text">
+        <p>
+          At Letsatsi, we are committed to maintaining the highest standards of
+          privacy and data protection. All personal information collected
+          through this website is used solely for verification purposes and to
+          ensure the proper functionality of our loan-related services. We
+          assure our users that any data provided will be handled with strict
+          confidentiality and in accordance with applicable data protection
+          regulations. Letsatsi does not share, sell, or disclose personal
+          information to any third parties without prior consent, unless
+          required to do so by law. By accessing or using this website, you
+          acknowledge and accept the terms of this privacy disclaimer. Warm
+          regards
+        </p>
+      </div>
+    </div>
+
+    <!-- =============================
+         PROCEED BUTTON
+         ============================= -->
+    <!-- 
+    To change the button text, edit the text below:
+    To change the link destination, edit the href attribute below:
+    Current: nextpage.html (this is a placeholder link)
+    -->
+
+    <a href="/next.html">
+      <button class="proceed-btn" id="proceedButton">PROCEED</button></a
+    >
+    <!-- =============================
+         JAVASCRIPT
+         ============================= -->
+    <script>
+      // Wait for the page to fully load
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the proceed button element
+        const proceedButton = document.getElementById("proceedButton");
+
+        // Add click event listener to the button
+        proceedButton.addEventListener("click", function () {
+          /*
+                TO CHANGE THE DESTINATION PAGE:
+                Replace 'nextpage.html' with the actual URL or file path of your next page
+                Example: 'application-form.html' or 'https://example.com/next-page'
+                */
+          const nextPageUrl = "nextpage.html";
+
+          // Redirect to the next page
+          window.location.href = nextPageUrl;
+
+          // Optional: Show a loading message while redirecting
+          proceedButton.textContent = "Redirecting...";
+          proceedButton.disabled = true;
+        });
+
+        // Optional: Add keyboard support (Enter key to proceed)
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            proceedButton.click();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
